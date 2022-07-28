@@ -1,0 +1,31 @@
+body {
+  font-family: sans-serif;
+}
+.emoji {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+}
+.country-city {
+  margin: 0 auto;
+}
+.current-date {
+  text-align: center;
+}
+h3 {
+  margin: 60px;
+}
+.sun {
+  margin-top: 30px;
+  width: 50px;
+}
+h3 {
+  text-align: center;
+}
+.border-app {
+  border: 1px solid #1a1a40;
+  padding: 10px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 8px;
+}
