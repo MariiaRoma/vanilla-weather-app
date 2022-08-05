@@ -36,6 +36,8 @@ function displayweatherCondition(response) {
   let showTemperatureForCity = Math.round(response.data.main.temp);
   document.querySelector("#current_temperature").innerHTML =
     showTemperatureForCity;
+  document.querySelector("#enter_country").innerHTML =
+    response.data.sys.country;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#max_temperature").innerHTML = Math.round(
     response.data.main.temp_max
@@ -44,6 +46,12 @@ function displayweatherCondition(response) {
     response.data.main.temp_min
   );
   document.querySelector("#pressure").innerHTML = response.data.main.pressure;
+  document.querySelector("#wind").innerHTML = response.data.wind.speed;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 function dataEnter(event) {
@@ -56,3 +64,13 @@ function dataEnter(event) {
 }
 let citySearch = document.querySelector("#search-form");
 citySearch.addEventListener("submit", dataEnter);
+
+function myCityForecast(response) {
+  document.querySelector("#tempMinOne").innerHTML = response.main.temp_min;
+}
+function forecast(event) {
+  event.preventDefault();
+  let apiKeyForecast = "30c4109a1cd7a0698b53f1fcf195aefc";
+  let urlForecast = `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=35&lon=139&appid={apiKeyForecast}`;
+  axios.get(urlForecast).then(myCityForecast);
+}
