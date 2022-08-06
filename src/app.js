@@ -33,7 +33,8 @@ document.getElementById("current_time").innerHTML = `${hour}:${minutes}`;
 function displayweatherCondition(response) {
   console.log(response.data);
   document.querySelector("#your_enter_city").innerHTML = response.data.name;
-  let showTemperatureForCity = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+  let showTemperatureForCity = Math.round(celsiusTemperature);
   document.querySelector("#current_temperature").innerHTML =
     showTemperatureForCity;
   document.querySelector("#enter_country").innerHTML =
@@ -74,3 +75,24 @@ function forecast(event) {
   let urlForecast = `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=35&lon=139&appid={apiKeyForecast}`;
   axios.get(urlForecast).then(myCityForecast);
 }
+
+let celsiusTemperature = null;
+
+function showFarenheitTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#current_temperature");
+  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(farenheitTemperature);
+}
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#current_temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let farenheitLink = document.querySelector("#fahrenheit-link");
+farenheitLink.addEventListener("click", showFarenheitTemp);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemp);
