@@ -30,5 +30,6 @@ h3 {
   border-radius: 8px;
 }
 small {
-  display: center;
+  margin: auto;
+  text-align: center;
 }
